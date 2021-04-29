@@ -1,0 +1,26 @@
+{
+  "name": "show-cadastro",
+  "version": "1.0.0",
+  "description": "Micro Serviço criado para cadastro de cliente em um show, proposto pela unidade curricular de Sistemas Integrados.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js --exec node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AparicioFermiano/show-cadastro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AparicioFermiano/show-cadastro/issues"
+  },
+  "homepage": "https://github.com/AparicioFermiano/show-cadastro#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
