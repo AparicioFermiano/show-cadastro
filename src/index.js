@@ -5,7 +5,7 @@ app.use(express.json());
 const axios = require('axios');
 const port = 2000
 
-const clientes = {}
+const clientes = []
 
 id = 0;
 //Obter a informação contida no json
@@ -32,7 +32,7 @@ app.post('/clientes', async (req, res) => {
 })
 app.put('/clientes/:id', (req, res) => {
     const { nome, endereco, idade, quantidade } = req.body;
-    const idCliente = req.body.id || [];
+    const idCliente = req.params.id || ["error"];
     clientes.forEach((informacao) => {
     idCliente == informacao.id ?
     (informacao.nome = nome,
@@ -41,11 +41,8 @@ app.put('/clientes/:id', (req, res) => {
     informacao.quantidade = quantidade,
     axios.post("http://localhost:10000/eventos", {
         tipo: "Cadastro Atualizado",
-        dados: {nome: informacao.nome, 
-                endereco: informacao.endereco, 
-                idade: informacao.idade,
-                quantidade: informacao.quantidade},
-        })) : "";
+        dados: { nome, endereco, idade, quantidade },
+        })) : "error";
     })
     
     res.status(200).send(clientes)
@@ -64,7 +61,7 @@ app.delete('/clientes/:id', async (req, res) => {
     const { nome, endereco, idade } = req.body;
     var idcliente  = req.params.id;
     //faz um laço de repetição, buscando o id do cliente e faz o delete.
-    dadosClientes.forEach((informacao, index) => {
+    clientes.forEach((informacao, index) => {
         (informacao.id == idcliente) ? clientes.splice(index, 1) : ""
     })//Envia a informação do arquivo deletado para o barramento
     axios.post('http://localhost:10000/eventos', {
